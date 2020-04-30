@@ -1,9 +1,9 @@
 <template lang="pug">
   div(v-on:click="newRandomArray").slotmachine
-    div.slots
-      p {{luckyWords[0]}}
-      p {{luckyWords[1]}}
-      p {{luckyWords[2]}}
+    p.slots
+      span {{luckyWords[0]}}
+      span {{luckyWords[1]}}
+      span {{luckyWords[2]}}
     //button(v-on:click="newRandomArray") Run
 </template>
 
@@ -26,14 +26,20 @@ export default {
     this.newRandomArray()
   },
   methods: {
+    copyToClipboard: function (str) {
+      const el = document.createElement('textarea')
+      el.value = str
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    },
     getRandomElement: function (myArray) {
       return myArray[Math.floor(Math.random() * myArray.length)]
     },
     newRandomArray: function () {
-      console.log(this.getRandomElement(this.words))
-      this.luckyWords = this.luckyWords.map(word => {
-        return this.getRandomElement(this.words)
-      })
+      this.luckyWords = this.luckyWords.map(word => this.getRandomElement(this.words))
+      this.copyToClipboard(this.luckyWords.join(' '))
     }
   }
 }
