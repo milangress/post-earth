@@ -51,4 +51,10 @@ export default {
     display flex
     flex-direction row
     justify-content space-between
+  @media screen and (max-width: 800px)
+    .slotmachine
+      margin-top 10vh
+    .slots
+      flex-direction column
+
 </style>
