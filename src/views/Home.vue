@@ -1,6 +1,8 @@
 <template lang="pug">
-  div(@click="start").slotmachine
-      //button(@click='start') start
+  div(@click="start")
+    p The Post-Earth Manual
+    a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") Data
+    .slotmachine
       .slot(v-for='slot in slots' ref='slots')
         //h2 {{ slot.title }}
         .slot__window
@@ -174,6 +176,8 @@ export default {
 
   .slot__item--copy
 
+  .footer
+    margin-top 10rem
   .slotmachine
     //width 80vw
     display flex

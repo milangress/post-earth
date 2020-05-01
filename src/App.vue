@@ -14,7 +14,7 @@
   body
     //background: white
     //background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25))
-    //height 100vh
+    height 100vh
   #app
     font-family "Arial Narrow", Arial
     -webkit-font-smoothing antialiased
