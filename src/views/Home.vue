@@ -34,7 +34,7 @@ export default {
       }],
       opts: null,
       startedAt: null,
-      luckyWords: ['', '', ''],
+      chosenWords: [],
       words: ['Moral', 'Interventions', 'Dark Patterns', 'Design', 'Possibility', 'Individual', 'Digital Wellness', 'Self–Help', 'Complexity ', 'World', 'Planet Earth ', 'Planet Earth ', 'Space', 'Religion', 'Religious', 'Spiritual', 'Schlaraffenland', 'Heaven', 'Art', 'Revolution', 'Voice', 'Commune', 'Progress', 'Humanity', 'Romantic', 'Relationship', 'Earthly Paradise', 'Paradise', 'Money', 'Commercialism', 'Capitalism', 'Socialism', 'New', 'Work', 'Freedom', 'Space', 'Faith', 'Harmony', 'A God', 'Cooperation', 'Whole', 'Souls', 'Spirituality', 'Nature', 'Sin', 'Living Standards', 'Optimism', 'Pessimism', 'Feminism', 'Critics', 'Extinction', 'Sustainability ', 'Human Conditions', 'Human Nature', 'Suffering', 'Death', 'Myths', 'Garden Eden', 'Happily', 'Critical Times ', 'Cultures', 'Countries', 'Societies', 'Memory', 'History', 'Past ', 'Future', 'Primitive', 'Dream', 'Premature Truth', 'Keep Shining ', 'Social Distancing ', 'Speculations', 'Epidemic ', 'Frequent ', 'Principles', 'Eternal Life ', 'Death Itself', 'Beginning', 'End ', 'Ridiculous', 'Impossible', 'Possible', 'Desire', 'Urge', 'Imagination', 'Technology', 'Infastructure', 'Attention', 'Empathy', 'Addictive', 'Unadressed', 'Adressed', 'Real–World', 'VR', 'Perfect User', 'Protest', 'Health', 'Creative', 'Medicine', 'Cure', 'Meditation', 'Balance', 'Social', 'Media', 'Hunger', 'Water', 'Crisis', 'Global', 'Local ', 'Market', 'Food', 'Feed', 'Family ', 'Single', 'Friendly', 'Radical', 'The Planet as', 'Night Vision', 'Puzzelmaker', 'Flying Cars', 'Ego', 'Killer', 'Heaven', 'Sunrise', 'Turn On', 'Tune In', 'Drop Out', 'Politics', 'Anti', 'Pro', 'Movement', 'Culture', 'Art', 'Counterculture', 'Climate', 'cool', 'high quality', 'Communalism', 'sharing Economy', 'democratic', 'Tool', 'Learning', 'Prototyping', 'Future', 'Publishing', 'Fresh', 'Biosphere', 'The Computer as', 'Cultivating', 'Spaceship Earth', 'Software', 'Mother', 'Father', 'Friends', 'Gene', 'Cybernetics', 'Independent', 'Low Cost', 'Offline', 'Moment Village', 'flying Balloons', 'Instant', 'Librarys', 'Bootleg', 'Architecture', 'Architects', 'do-it-yourself', 'Geodesic', 'Geodesic Dome', 'Desks', 'Movable', 'Revolution', 'Withput', 'Designer', 'Design', 'Cabin', 'Money', 'in the Desert', 'Alternative', 'Organs', 'Media', 'Internet', 'Milk & Honey', 'Scrolling']
     }
   },
@@ -42,7 +42,6 @@ export default {
     HelloWorld
   },
   mounted () {
-    this.newRandomArray()
     this.slots.map(slot => { slot.items = this.shuffleArray(this.words) })
   },
   methods: {
@@ -70,10 +69,6 @@ export default {
     getRandomElement: function (myArray) {
       return myArray[Math.floor(Math.random() * myArray.length)]
     },
-    newRandomArray: function () {
-      this.luckyWords = this.luckyWords.map(word => this.getRandomElement(this.words))
-      this.copyToClipboard(this.luckyWords.join('  '))
-    },
     start: function () {
       if (this.opts) {
         return
@@ -82,6 +77,7 @@ export default {
         const slot = this.$refs.slots[i]
         const choice = Math.floor(Math.random() * data.items.length)
         console.log('choice', i, data.items[choice])
+        this.chosenWords[i] = data.items[choice]
         const opts = {
           el: slot.querySelector('.slot__wrap'),
           finalPos: choice * 180,
@@ -92,6 +88,7 @@ export default {
         }
         return opts
       })
+      this.copyToClipboard(this.chosenWords.join('  '))
       next(this.animate)
     },
     animate: function (timestamp) {
