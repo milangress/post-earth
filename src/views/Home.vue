@@ -14,6 +14,8 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
+const sheetURL = 'https://spreadsheets.google.com/feeds/cells/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/1/public/full?alt=json'
+
 const next = window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
   window.mozRequestAnimationFrame ||
@@ -34,17 +36,34 @@ export default {
       }],
       opts: null,
       startedAt: null,
-      chosenWords: [],
-      words: ['Moral', 'Interventions', 'Dark Patterns', 'Design', 'Possibility', 'Individual', 'Digital Wellness', 'Self–Help', 'Complexity ', 'World', 'Planet Earth ', 'Planet Earth ', 'Space', 'Religion', 'Religious', 'Spiritual', 'Schlaraffenland', 'Heaven', 'Art', 'Revolution', 'Voice', 'Commune', 'Progress', 'Humanity', 'Romantic', 'Relationship', 'Earthly Paradise', 'Paradise', 'Money', 'Commercialism', 'Capitalism', 'Socialism', 'New', 'Work', 'Freedom', 'Space', 'Faith', 'Harmony', 'A God', 'Cooperation', 'Whole', 'Souls', 'Spirituality', 'Nature', 'Sin', 'Living Standards', 'Optimism', 'Pessimism', 'Feminism', 'Critics', 'Extinction', 'Sustainability ', 'Human Conditions', 'Human Nature', 'Suffering', 'Death', 'Myths', 'Garden Eden', 'Happily', 'Critical Times ', 'Cultures', 'Countries', 'Societies', 'Memory', 'History', 'Past ', 'Future', 'Primitive', 'Dream', 'Premature Truth', 'Keep Shining ', 'Social Distancing ', 'Speculations', 'Epidemic ', 'Frequent ', 'Principles', 'Eternal Life ', 'Death Itself', 'Beginning', 'End ', 'Ridiculous', 'Impossible', 'Possible', 'Desire', 'Urge', 'Imagination', 'Technology', 'Infastructure', 'Attention', 'Empathy', 'Addictive', 'Unadressed', 'Adressed', 'Real–World', 'VR', 'Perfect User', 'Protest', 'Health', 'Creative', 'Medicine', 'Cure', 'Meditation', 'Balance', 'Social', 'Media', 'Hunger', 'Water', 'Crisis', 'Global', 'Local ', 'Market', 'Food', 'Feed', 'Family ', 'Single', 'Friendly', 'Radical', 'The Planet as', 'Night Vision', 'Puzzelmaker', 'Flying Cars', 'Ego', 'Killer', 'Heaven', 'Sunrise', 'Turn On', 'Tune In', 'Drop Out', 'Politics', 'Anti', 'Pro', 'Movement', 'Culture', 'Art', 'Counterculture', 'Climate', 'cool', 'high quality', 'Communalism', 'sharing Economy', 'democratic', 'Tool', 'Learning', 'Prototyping', 'Future', 'Publishing', 'Fresh', 'Biosphere', 'The Computer as', 'Cultivating', 'Spaceship Earth', 'Software', 'Mother', 'Father', 'Friends', 'Gene', 'Cybernetics', 'Independent', 'Low Cost', 'Offline', 'Moment Village', 'flying Balloons', 'Instant', 'Librarys', 'Bootleg', 'Architecture', 'Architects', 'do-it-yourself', 'Geodesic', 'Geodesic Dome', 'Desks', 'Movable', 'Revolution', 'Withput', 'Designer', 'Design', 'Cabin', 'Money', 'in the Desert', 'Alternative', 'Organs', 'Media', 'Internet', 'Milk & Honey', 'Scrolling']
+      chosenWords: []
     }
   },
   components: {
     HelloWorld
   },
   mounted () {
-    this.slots.map(slot => { slot.items = this.shuffleArray(this.words) })
+    this.loadSheet()
+    // this.slots.map(slot => { slot.items = [...slot.items, ...this.shuffleArray(this.words)] })
   },
   methods: {
+    loadSheet: async function () {
+      const sheetData = await fetch(sheetURL).then(response => response.json())
+      const entries = sheetData.feed.entry.filter(entry => entry.gs$cell.row !== '1')
+      const allSlots = entries.filter(entry => entry.gs$cell.col === '1').map(entry => entry.content.$t)
+      const firstSlot = entries.filter(entry => entry.gs$cell.col === '2').map(entry => entry.content.$t)
+      const secondSlot = entries.filter(entry => entry.gs$cell.col === '3').map(entry => entry.content.$t)
+      const thirdSlot = entries.filter(entry => entry.gs$cell.col === '4').map(entry => entry.content.$t)
+      this.slots = [{
+        items: this.shuffleArray([...firstSlot, ...firstSlot, ...allSlots])
+      }, {
+        items: this.shuffleArray([...secondSlot, ...secondSlot, ...allSlots])
+      }, {
+        items: this.shuffleArray([...thirdSlot, ...thirdSlot, ...allSlots])
+      }]
+      console.log(entries)
+      console.log(this.slots)
+    },
     copyToClipboard: function (str) {
       const el = document.createElement('textarea')
       el.value = str
