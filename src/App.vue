@@ -10,7 +10,7 @@
 
 <style lang="stylus">
   body
-    background black
+    background white
   #app
     font-family "Arial Narrow", Arial
     -webkit-font-smoothing antialiased
