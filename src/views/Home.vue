@@ -134,7 +134,7 @@ export default {
 
   .slot__window
     background-color: black
-    background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25))
+    background: linear-gradient(45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25))
     border-radius 4px
     height: 200px
     overflow-y: hidden
