@@ -39,7 +39,7 @@ export default {
     },
     newRandomArray: function () {
       this.luckyWords = this.luckyWords.map(word => this.getRandomElement(this.words))
-      this.copyToClipboard(this.luckyWords.join(' '))
+      this.copyToClipboard(this.luckyWords.join('  '))
     }
   }
 }
