@@ -185,7 +185,7 @@ export default {
     margin 1rem auto
     margin-top 30vh
     font-size 3.5rem
-    cursor:  url('../assets/coin.png') 60 60, progress
+    cursor:  url('../assets/coin-turn.png') 60 60, progress
   @media screen and (max-width: 800px)
     .slotmachine
       margin-top 0vh
