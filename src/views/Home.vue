@@ -1,7 +1,5 @@
 <template lang="pug">
   div(@click="start" v-bind:style="bgc").wrapper
-    p The Post-Earth Manual
-    a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") Data
     .slotmachine
       .slot(v-for='slot in slots' ref='slots')
         //h2 {{ slot.title }}
@@ -9,7 +7,19 @@
           .slot__wrap
             .slot__item(v-for='opt in slot.items') {{ opt }}
             .slot__item.slot__item--copy {{ slot.items[0] }}
-    p "The Plot to Destroy Civilization"
+    div.description
+      p This is the Plot/Slot Machine – What does the future tell?
+      p <span>Beginning</span><span>Libraries</span><span>Romantic</span>could be a the start of a wonderful nerdy love story and <span>Father</span><span>Desire</span><span>Alternative</span>sounds like there will be daddy issues.
+      p But you can also question in with direction our society goes. <span>Climate</span><span>Garden Eden</span><span>Geodesic Dome</span>could envision a future where the rich seek refuge from a harsh climate under geodesic domes. While <span>Addictive</span><span>Scrolling</span><span>Politics</span>could mean that Instagram gets outlawed.
+      p And you get to decide if a world in there everybody uses <span>Romantic</span><span>Counterculture</span><span>Money</span>and walks around with a sheet of LSD is a utopia or a dystopia.
+      p You can use the plot slot machine for a conversation, as a jump of point for a creative process or as a definitive oracle and let it guide every aspect of your life. Either way we invite you to participate, to &nbsp;
+        a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") add you own words to the list
+        | &nbsp; and by that at least control your own future a little bit.
+
+      p So don't forget – this is not <span>The Planet</span><span>as</span><span>Low Cost Culture</span>and always keep  <span>The</span><span>Optimism</span><span>Pessimism</span>
+      p with Love
+        br
+        | Anna & Milan
 
 </template>
 
@@ -31,17 +41,17 @@ export default {
   data: function () {
     return {
       slots: [{
-        items: ['The Post']
+        items: ['Plot']
       }, {
-        items: ['Earth']
+        items: ['Slot']
       }, {
-        items: ['Manual']
+        items: ['Machine']
       }],
       opts: null,
       startedAt: null,
       chosenWords: [],
       bgc: {
-        backgroundColor: 'rgb(220,20,240)'
+        backgroundColor: 'rgb(255,255,255)'
       }
     }
   },
@@ -188,6 +198,21 @@ export default {
 
   .slot__item--copy
 
+  .description
+    max-width 75ch
+    text-align left
+    line-height 1.45
+    margin 15rem auto
+    font-size 2rem
+  .description span
+    //background linear-gradient(-185deg, rgba(255,255,255,0.82), rgba(255,255,255,0.25))
+    border 1px solid black
+    border-radius 0.2em
+    padding 0.01em 0.15em
+    margin 0 0.15em
+    white-space:nowrap;
+  a:visited
+    color black
   .footer
     margin-top 10rem
   .slotmachine
