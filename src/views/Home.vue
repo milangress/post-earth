@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(@click="start")
+  div(@click="start" v-bind:style="bgc").wrapper
     p The Post-Earth Manual
     a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") Data
     .slotmachine
@@ -9,6 +9,7 @@
           .slot__wrap
             .slot__item(v-for='opt in slot.items') {{ opt }}
             .slot__item.slot__item--copy {{ slot.items[0] }}
+    p "The Plot to Destroy Civilization"
 
 </template>
 
@@ -30,15 +31,18 @@ export default {
   data: function () {
     return {
       slots: [{
-        items: []
+        items: ['The Post']
       }, {
-        items: []
+        items: ['Earth']
       }, {
-        items: []
+        items: ['Manual']
       }],
       opts: null,
       startedAt: null,
-      chosenWords: []
+      chosenWords: [],
+      bgc: {
+        backgroundColor: 'rgb(220,20,240)'
+      }
     }
   },
   components: {
@@ -90,6 +94,9 @@ export default {
     getRandomElement: function (myArray) {
       return myArray[Math.floor(Math.random() * myArray.length)]
     },
+    newColor: function () {
+      this.bgc.backgroundColor = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`
+    },
     start: function () {
       if (this.opts) {
         return
@@ -130,6 +137,7 @@ export default {
         const pos = -1 * Math.floor((offset + opt.finalPos) % opt.height)
 
         opt.el.style.transform = 'translateY(' + pos + 'px)'
+        this.newColor()
 
         if (timeDiff > opt.duration) {
           console.log('finished', opt, pos, opt.finalPost)
@@ -149,6 +157,10 @@ export default {
 </script>
 
 <style lang="stylus">
+  .wrapper
+    padding 1rem
+    height 100%
+    //transition 0.1s
   .slot
     float: left
     margin: 0.4em
@@ -183,9 +195,9 @@ export default {
     display flex
     justify-content space-between
     margin 1rem auto
-    margin-top 30vh
+    margin-top 20vh
     font-size 3.5rem
-    cursor:  url('../assets/coin-turn.png') 60 60, progress
+    //cursor:  url('../assets/coin-turn.png') 60 60, progress
   @media screen and (max-width: 800px)
     .slotmachine
       margin-top 0vh
