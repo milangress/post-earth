@@ -1,5 +1,7 @@
 <template lang="pug">
   div(@click="start" v-bind:style="bgc").wrapper
+    .ImageOverlay
+      img(src="@/assets/Plot-Slot-Maschine.png")
     .slotmachine
       .slot(v-for='slot in slots' ref='slots')
         //h2 {{ slot.title }}
@@ -202,7 +204,7 @@ export default {
     max-width 75ch
     text-align left
     line-height 1.45
-    margin 15rem auto
+    margin 10rem auto
     font-size 2rem
   .description span
     //background linear-gradient(-185deg, rgba(255,255,255,0.82), rgba(255,255,255,0.25))
@@ -220,9 +222,31 @@ export default {
     display flex
     justify-content space-between
     margin 1rem auto
-    margin-top 20vh
+    margin-top 30vh
     font-size 3.5rem
     //cursor:  url('../assets/coin-turn.png') 60 60, progress
+  .ImageOverlay
+    width 100vw
+    max-height 100vh
+    position fixed
+    z-index 100
+    margin 0 auto
+    animation linear fade 8s
+    opacity 0
+  .ImageOverlay img
+    max-height 90vh
+  @keyframes fade {
+    0% {
+      opacity 0
+    }
+    10% {
+      opacity 1
+    }
+    100% {
+      opacity 0
+    }
+  }
+
   @media screen and (max-width: 800px)
     .slotmachine
       margin-top 0vh
