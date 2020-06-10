@@ -233,6 +233,7 @@ export default {
     margin 0 auto
     animation linear fade 8s
     opacity 0
+    pointer-events: none
   .ImageOverlay img
     max-height 90vh
   @keyframes fade {
