@@ -11,14 +11,14 @@
             .slot__item.slot__item--copy {{ slot.items[0] }}
     div.description
       p This is the Plot/Slot Machine – What does the future tell?
-      p <span>Beginning</span><span>Libraries</span><span>Romantic</span>could be a the start of a wonderful nerdy love story and <span>Father</span><span>Desire</span><span>Alternative</span>sounds like there will be daddy issues.
-      p But you can also question in with direction our society goes. <span>Climate</span><span>Garden Eden</span><span>Geodesic Dome</span>could envision a future where the rich seek refuge from a harsh climate under geodesic domes. While <span>Addictive</span><span>Scrolling</span><span>Politics</span>could mean that Instagram gets outlawed.
-      p And you get to decide if a world in there everybody uses <span>Romantic</span><span>Counterculture</span><span>Money</span>and walks around with a sheet of LSD is a utopia or a dystopia.
+      p <span>Beginning</span> <span>Libraries</span> <span>Romantic</span> could be a the start of a wonderful nerdy love story and <span>Father</span> <span>Desire</span> <span>Alternative</span>sounds like there will be daddy issues.
+      p But you can also question in with direction our society goes. <span>Climate</span> <span>Garden Eden</span> <span>Geodesic Dome</span> could envision a future where the rich seek refuge from a harsh climate under geodesic domes. While <span>Addictive</span> <span>Scrolling</span> <span>Politics</span> could mean that Instagram gets outlawed.
+      p And you get to decide if a world in there everybody uses <span>Romantic</span> <span>Counterculture</span> <span>Money</span> and walks around with a sheet of LSD is a utopia or a dystopia.
       p You can use the plot slot machine for a conversation, as a jump of point for a creative process or as a definitive oracle and let it guide every aspect of your life. Either way we invite you to participate, to &nbsp;
         a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") add you own words to the list
         | &nbsp; and by that at least control your own future a little bit.
 
-      p So don't forget – this is not <span>The Planet as</span><span>Low Cost</span><span>Culture</span>and always keep  <span>The</span><span>Optimism</span><span>Pessimism</span>
+      p So don't forget – this is not <span>The Planet as</span> <span>Low Cost</span> <span>Culture</span> and always keep  <span>The</span> <span>Optimism</span> <span>Pessimism</span>
       p with Love
         br
         | Anna & Milan
@@ -211,7 +211,7 @@ export default {
     border 1px solid black
     border-radius 0.2em
     padding 0.01em 0.15em
-    margin 0 0.15em
+    margin-right 0.1em
     white-space:nowrap;
   a:visited
     color black
