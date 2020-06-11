@@ -18,7 +18,7 @@
         a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") add you own words to the list
         | &nbsp; and by that at least control your own future a little bit.
 
-      p So don't forget – this is not <span>The Planet</span><span>as</span><span>Low Cost Culture</span>and always keep  <span>The</span><span>Optimism</span><span>Pessimism</span>
+      p So don't forget – this is not <span>The Planet as</span><span>Low Cost</span><span>Culture</span>and always keep  <span>The</span><span>Optimism</span><span>Pessimism</span>
       p with Love
         br
         | Anna & Milan
