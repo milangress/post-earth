@@ -120,9 +120,9 @@ export default {
         this.chosenWords[i] = data.items[choice]
         const opts = {
           el: slot.querySelector('.slot__wrap'),
-          finalPos: choice * 180,
+          finalPos: choice * 160,
           startOffset: 2000 + Math.random() * 500 + i * 500,
-          height: data.items.length * 180,
+          height: data.items.length * 160,
           duration: 3000 + i * 700, // milliseconds
           isFinished: false
         }
@@ -169,6 +169,9 @@ export default {
 </script>
 
 <style lang="stylus">
+  :root
+    --slot-height: 180px
+    --slot-margin: 20px
   .wrapper
     padding 1rem
     height 100%
@@ -181,24 +184,22 @@ export default {
     background-color: black
     background: linear-gradient(45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25))
     border-radius 4px
-    height: 200px
+    height: var(--slot-height)
     overflow-y: hidden
     box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3)
 
   .slot__wrap
 
   .slot__item
-    margin-top: 20px
-    height: 160px
-    padding: 0 10px
+    margin-top: var(--slot-margin)
+    height: calc(var(--slot-height) - var(--slot-margin) * 2)
+    padding: 0 calc(var(--slot-margin) / 2)
     text-align: center
     background-color: white
     background: linear-gradient(-185deg, rgba(255,255,255,0.82), rgba(255,255,255,0.25))
     border-radius 2px
     color: black
-    line-height: 160px
-
-  .slot__item--copy
+    line-height: calc(var(--slot-height) - var(--slot-margin) * 2)
 
   .description
     max-width 75ch
@@ -249,9 +250,15 @@ export default {
   }
 
   @media screen and (max-width: 800px)
+    .ImageOverlay img
+      width 100vw
+    .ImageOverlay
+      top 20vh
     .slotmachine
       margin-top 0vh
       flex-direction column
     .slot
       margin 0.2em
+    .slot__item
+      font-size 10vw
 </style>
