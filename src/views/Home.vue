@@ -11,11 +11,11 @@
             .slot__item.slot__item--copy {{ slot.items[0] }}
     div.description
       p This is the Plot/Slot Machine – What does the future tell?
-      p <span>Beginning</span> <span>Libraries</span> <span>Romantic</span> could be the start of a wonderful nerdy love story and <span>Father</span> <span>Desire</span> <span>Alternative</span>sounds like there will be daddy issues.
-      p You can question in which direction our society is going. <span>Climate</span> <span>Garden Eden</span> <span>Geodesic Dome</span> could envision a future where the rich seek refuge from a harsh climate under geodesic domes. While <span>Addictive</span> <span>Scrolling</span> <span>Politics</span> could mean that Instagram gets outlawed.
-      p Decide yourself if a world where everybody uses <span>Romantic</span> <span>Counterculture</span> <span>Money</span> and walks around with a sheet of LSD is a utopia or a dystopia.
-      p You can use the plot slot machine for a conversation, as a jump of point for a creative process, or as a definitive oracle and let it guide every aspect of your life. Either way we invite you to participate, to &nbsp;
-        a(href="https://docs.google.com/spreadsheets/d/1W2vC_DJgkDrKWauYBp_IjoGBMIDyvj5qHzMDg2Bj1qY/edit#gid=0") add your own words to the list
+      p <span>Beginning</span> <span>Libraries</span> <span>Romantic</span> could be a the start of a wonderful nerdy love story and <span>Father</span> <span>Desire</span> <span>Alternative</span>sounds like there will be daddy issues.
+      p But you can also question in with direction our society goes. <span>Climate</span> <span>Garden Eden</span> <span>Geodesic Dome</span> could envision a future where the rich seek refuge from a harsh climate under geodesic domes. While <span>Addictive</span> <span>Scrolling</span> <span>Politics</span> could mean that Instagram gets outlawed.
+      p And you get to decide if a world in there everybody uses <span>Romantic</span> <span>Counterculture</span> <span>Money</span> and walks around with a sheet of LSD is a utopia or a dystopia.
+      p You can use the plot slot machine for a conversation, as a jump of point for a creative process or as a definitive oracle and let it guide every aspect of your life. Either way we invite you to participate, to &nbsp;
+        a(href="https://docs.google.com/spreadsheets/d/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/edit#gid=0") add you own words to the list
         | &nbsp; and by that at least control your own future a little bit.
 
       p So don't forget – this is not <span>The Planet as</span> <span>Low Cost</span> <span>Culture</span> and always keep  <span>The</span> <span>Optimism</span> <span>Pessimism</span>
@@ -29,9 +29,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
-// const sheetURL = 'https://spreadsheets.google.com/feeds/cells/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/1/public/full?alt=json'
-
-const sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/1W2vC_DJgkDrKWauYBp_IjoGBMIDyvj5qHzMDg2Bj1qY/values/1!A1:D1001?majorDimension=COLUMNS&key=AIzaSyAV03L19A5_7wkchjcLIZFqErntE09gMrc'
+const sheetURL = 'https://spreadsheets.google.com/feeds/cells/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/1/public/full?alt=json'
 
 const next = window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
@@ -69,19 +67,19 @@ export default {
   methods: {
     loadSheet: async function () {
       const sheetData = await fetch(sheetURL).then(response => response.json())
-      console.log(sheetData)
-
-      console.table(sheetData.values)
-      const removedHeadline = sheetData.values.map(column => column.slice(1))
-      console.log(removedHeadline)
-
+      const entries = sheetData.feed.entry.filter(entry => entry.gs$cell.row !== '1')
+      const allSlots = entries.filter(entry => entry.gs$cell.col === '1').map(entry => entry.content.$t)
+      const firstSlot = entries.filter(entry => entry.gs$cell.col === '2').map(entry => entry.content.$t)
+      const secondSlot = entries.filter(entry => entry.gs$cell.col === '3').map(entry => entry.content.$t)
+      const thirdSlot = entries.filter(entry => entry.gs$cell.col === '4').map(entry => entry.content.$t)
       this.slots = [{
-        items: this.shuffleArray([...removedHeadline[1], ...removedHeadline[1], ...removedHeadline[0]])
+        items: this.shuffleArray([...firstSlot, ...firstSlot, ...allSlots])
       }, {
-        items: this.shuffleArray([...removedHeadline[2], ...removedHeadline[2], ...removedHeadline[0]])
+        items: this.shuffleArray([...secondSlot, ...secondSlot, ...allSlots])
       }, {
-        items: this.shuffleArray([...removedHeadline[3], ...removedHeadline[3], ...removedHeadline[0]])
+        items: this.shuffleArray([...thirdSlot, ...thirdSlot, ...allSlots])
       }]
+      console.log(entries)
       console.log(this.slots)
     },
     copyToClipboard: function (str) {
