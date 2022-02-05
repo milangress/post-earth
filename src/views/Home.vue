@@ -29,7 +29,9 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
-const sheetURL = 'https://spreadsheets.google.com/feeds/cells/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/1/public/full?alt=json'
+// const sheetURL = 'https://spreadsheets.google.com/feeds/cells/1UKl6-enr9-ih9rfZ52x9n66VXIELMA5lMkRJjDB4Bbo/1/public/full?alt=json'
+
+const sheetURL = 'https://sheets.googleapis.com/v4/spreadsheets/1W2vC_DJgkDrKWauYBp_IjoGBMIDyvj5qHzMDg2Bj1qY/values/1!A1:D1001?majorDimension=COLUMNS&key=AIzaSyAV03L19A5_7wkchjcLIZFqErntE09gMrc'
 
 const next = window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
@@ -67,19 +69,19 @@ export default {
   methods: {
     loadSheet: async function () {
       const sheetData = await fetch(sheetURL).then(response => response.json())
-      const entries = sheetData.feed.entry.filter(entry => entry.gs$cell.row !== '1')
-      const allSlots = entries.filter(entry => entry.gs$cell.col === '1').map(entry => entry.content.$t)
-      const firstSlot = entries.filter(entry => entry.gs$cell.col === '2').map(entry => entry.content.$t)
-      const secondSlot = entries.filter(entry => entry.gs$cell.col === '3').map(entry => entry.content.$t)
-      const thirdSlot = entries.filter(entry => entry.gs$cell.col === '4').map(entry => entry.content.$t)
+      console.log(sheetData)
+
+      console.table(sheetData.values)
+      const removedHeadline = sheetData.values.map(column => column.slice(1))
+      console.log(removedHeadline)
+
       this.slots = [{
-        items: this.shuffleArray([...firstSlot, ...firstSlot, ...allSlots])
+        items: this.shuffleArray([...removedHeadline[1], ...removedHeadline[1], ...removedHeadline[0]])
       }, {
-        items: this.shuffleArray([...secondSlot, ...secondSlot, ...allSlots])
+        items: this.shuffleArray([...removedHeadline[2], ...removedHeadline[2], ...removedHeadline[0]])
       }, {
-        items: this.shuffleArray([...thirdSlot, ...thirdSlot, ...allSlots])
+        items: this.shuffleArray([...removedHeadline[3], ...removedHeadline[3], ...removedHeadline[0]])
       }]
-      console.log(entries)
       console.log(this.slots)
     },
     copyToClipboard: function (str) {
