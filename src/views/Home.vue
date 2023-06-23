@@ -263,6 +263,7 @@ export default {
       flex-direction column
     .slot
       margin 0.2em
+      max-width 100%
     .slot__item
       font-size 10vw
 </style>
