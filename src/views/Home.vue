@@ -182,6 +182,7 @@ export default {
   .slot
     float: left
     margin: 0.4em
+    max-width: 33%
 
   .slot__window
     background-color: black
