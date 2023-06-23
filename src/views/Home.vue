@@ -10,6 +10,7 @@
             .slot__item(v-for='opt in slot.items') {{ opt }}
             .slot__item.slot__item--copy {{ slot.items[0] }}
     div.description
+      p <i> Click to run the Plot/Slot Machine. TW flashing lights!</i>
       p This is the Plot/Slot Machine – What does the future tell?
       p <span>Beginning</span> <span>Libraries</span> <span>Romantic</span> could be the start of a wonderful nerdy love story and <span>Father</span> <span>Desire</span> <span>Alternative</span>sounds like there will be daddy issues.
       p You can question in which direction our society is going. <span>Climate</span> <span>Garden Eden</span> <span>Geodesic Dome</span> could envision a future where the rich seek refuge from a harsh climate under geodesic domes. While <span>Addictive</span> <span>Scrolling</span> <span>Politics</span> could mean that Instagram gets outlawed.
